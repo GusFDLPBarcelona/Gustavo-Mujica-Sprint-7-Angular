@@ -1,3 +1,6 @@
+Gustavo Mujica 
+Sprint 7 Angular
+
 # Starwars
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
