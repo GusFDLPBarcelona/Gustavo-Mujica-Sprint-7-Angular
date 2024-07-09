@@ -1,0 +1,15 @@
+.banner{
+    background-color: black;
+    height:10rem;
+    width: 100%;
+    text-align: center;
+}
+
+.imageBanner{
+    position: relative;
+}
+
+.buttons{
+    position: relative;
+    align-content: end;
+}

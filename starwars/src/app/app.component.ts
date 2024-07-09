@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ListaNavesComponent } from './lista-naves/lista-naves.component';
+import { ListaNavesComponent } from './components/lista-naves/lista-naves.component';
 
 @Component({
   selector: 'app-root',

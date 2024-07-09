@@ -1,0 +1,15 @@
+<div class="container align-middle" @If listaNaves>
+
+    <div class="datos1" id="naves">
+        <table>
+            @for (item of listaNaves; track {$index}) {
+            <tr class="datos2">
+                <td>
+                    <strong>{{item.name}}</strong>
+                    <span>{{item.model}}</span>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>

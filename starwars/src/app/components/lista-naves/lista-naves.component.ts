@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Nave, NavesService } from '../naves.service';
+import { Nave, NavesService } from '../../naves.service';
+
 
 @Component({
   selector: 'app-lista-naves',
