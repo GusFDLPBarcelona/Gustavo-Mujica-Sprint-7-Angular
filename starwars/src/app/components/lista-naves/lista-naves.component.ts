@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { Naves, NavesService } from '../../naves.service';
+import { Component, OnInit } from '@angular/core';
+import { NavesService } from '../../naves.service';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Naves } from '../../interfaces/naves';
 
 
 
@@ -13,9 +14,11 @@ import { RouterModule } from '@angular/router';
   templateUrl: './lista-naves.component.html',
   styleUrl: './lista-naves.component.css'
 })
-export class ListaNavesComponent {
+export class ListaNavesComponent implements OnInit {
+  listaNaves: Naves[] = [];
+  naveSeleccionada?: Naves
 
-  listaNaves?: any;
+
 
   constructor(private servicio: NavesService) { }
 
@@ -23,8 +26,8 @@ export class ListaNavesComponent {
     this.servicio.getNaves().subscribe((datos) => {
       const intermediaria = datos.body;
       this.listaNaves = intermediaria!.results;
-      console.log(this.listaNaves.count);
-      console.log(this.listaNaves.results);
+      console.log(intermediaria.listaNaves.count);
+      console.log(intermediaria.listaNaves.results);
     })
   }
 

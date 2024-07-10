@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Nave, Naves } from '../app/interfaces/naves';
+import { Naves } from '../app/interfaces/naves';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +21,9 @@ export class NavesService {
     return `${this.imageBaseUrl}/starships/${id}.jpg`;
   }
 
-  getNaveDetalle(id: string): Observable<Nave> {
-    return this.httpClient.get<Nave>(`${this.url}/${id}`);
+  getNaveDetalle(id: string): Observable<Naves> {
+    return this.httpClient.get<Naves>(`${this.url}/${id}`);
   }
 }
-export { Naves };
+
 

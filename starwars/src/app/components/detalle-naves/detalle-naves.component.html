@@ -1,0 +1,12 @@
+<div>
+    @if(listaNaves) {
+    <h2>{{ nave.name }}</h2>
+    <img [src]="servicio.getNaveImagen(nave.id)" alt="{{ nave.name }}">
+    <p><strong>Modelo:</strong> {{ nave.model }}</p>
+    <p><strong>Fabricante:</strong> {{ nave.manufacturer }}</p>
+    <p><strong>Costo en créditos:</strong> {{ nave.cost_in_credits }}</p>
+    }
+</div>
+<ng-template #loading>
+    <p>Cargando...</p>
+</ng-template>
