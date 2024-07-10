@@ -4,7 +4,7 @@
     <div class="datos1" id="naves">
         <div class="card-container">
             @for (item of listaNaves; track {$index}) {
-            <div class="card">
+            <div class="card" (click)="getNaveSeleccionada(item)">
                 <strong>{{item.name}}</strong>
                 <span>{{item.model}}</span>
             </div>

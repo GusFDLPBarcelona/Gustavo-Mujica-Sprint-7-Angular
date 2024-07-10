@@ -1,4 +1,5 @@
 export interface Naves {
+    url: string;
     name: string;
     model: string;
 }

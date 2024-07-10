@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavesService } from '../../naves.service';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { Naves } from '../../interfaces/naves';
+import { Router, RouterModule } from '@angular/router';
+import { Naves, Nave } from '../../interfaces/naves';
 
 
 
@@ -16,20 +16,32 @@ import { Naves } from '../../interfaces/naves';
 })
 export class ListaNavesComponent implements OnInit {
   listaNaves: Naves[] = [];
-  naveSeleccionada?: Naves
+  naveSeleccionada?: Nave;
 
 
 
-  constructor(private servicio: NavesService) { }
+  constructor(private servicio: NavesService, private router: Router) { }
 
   ngOnInit(): void {
     this.servicio.getNaves().subscribe((datos) => {
       const intermediaria = datos.body;
       this.listaNaves = intermediaria!.results;
-      console.log(intermediaria.listaNaves.count);
-      console.log(intermediaria.listaNaves.results);
-    })
+      console.log(intermediaria.count);
+      console.log(intermediaria.results);
+    });
   }
+  seleccionarNave(url: string): void {
+    this.servicio.getNaveDetalle(url).subscribe((data: Nave) => {
+      this.naveSeleccionada = data;
+    });
+  }
+
+  getNaveSeleccionada(item: Naves): void {
+    const url = `${item.url}`;
+    this.router.navigate([encodeURIComponent(url)]);
+
+  }
+
 
 
 }
