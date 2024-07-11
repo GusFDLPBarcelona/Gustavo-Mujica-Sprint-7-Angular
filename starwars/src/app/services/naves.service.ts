@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Naves } from '../interfaces/naves';
+import { Naves, Nave } from '../interfaces/naves';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Injectable({
@@ -9,9 +9,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class NavesService {
 
-  protected url = 'https://swapi.py4e.com/api/starships';
-  protected detalleUrl = 'https://swapi.dev/api/starships/';
-  imageBaseUrl = 'https://starwars-visualguide.com/assets/img';
+  private url = 'https://swapi.py4e.com/api/starships';
+  private detalleUrl = 'https://swapi.dev/api/starships/';
+  private imageBaseUrl = 'https://starwars-visualguide.com/assets/img';
+  private siguienteUrl: string | null = null;
 
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) { }
 
@@ -24,13 +25,25 @@ export class NavesService {
     return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
   }
 
-  getNaveDetalle(id: string): Observable<any> {
-    return this.httpClient.get<Naves>(`https://swapi.dev/api/starships/`);
+  getNaveDetalle(id: string): Observable<Nave> {
+    return this.httpClient.get<Nave>(`${this.detalleUrl}${id}`);
   }
 
   getNaveDato(url: string): Observable<HttpResponse<Naves>> {
     return this.httpClient.get<Naves>(url, { observe: 'response' });
   }
+
+  getMasNaves(): Observable<HttpResponse<any>> {
+    console.log(Observable<HttpResponse<any>>)
+    if (this.siguienteUrl) {
+      return this.httpClient.get<any>(this.siguienteUrl, { observe: 'response' });
+    } else {
+      return this.getNaves();
+    }
+  }
+
+  setSiguienteUrl(url: string | null): void {
+    console.log(this.siguienteUrl)
+    this.siguienteUrl = url;
+  }
 }
-
-
