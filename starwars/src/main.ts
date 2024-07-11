@@ -6,7 +6,7 @@ import { ListaNavesComponent } from './app/components/lista-naves/lista-naves.co
 import { importProvidersFrom } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { DetalleNavesComponent } from './app/components/detalle-naves/detalle-naves.component';
-import { NaveResolver } from './app/components/detalle-naves/nave-resolver.service';
+import { NaveResolver } from './app/services/nave-resolver.service';
 
 
 export const routes: Routes = [

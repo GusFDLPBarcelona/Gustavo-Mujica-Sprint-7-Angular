@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { NavesService } from '../../naves.service';
+import { NavesService } from '../../services/naves.service';
 import { Naves } from '../../interfaces/naves';
 import { HeaderComponent } from '../header/header.component';
 import { Observable } from 'rxjs';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavesService } from '../../naves.service';
+import { NavesService } from '../../services/naves.service';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';

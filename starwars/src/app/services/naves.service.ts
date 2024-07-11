@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Naves } from '../app/interfaces/naves';
+import { Naves } from '../interfaces/naves';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Injectable({

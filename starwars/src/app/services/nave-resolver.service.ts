@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, of, map } from 'rxjs';
-import { NavesService } from '../../naves.service';
+import { NavesService } from './naves.service';
 import { HttpResponse } from '@angular/common/http';
-import { Naves } from '../../interfaces/naves';
+import { Naves } from '../interfaces/naves';
 
 @Injectable({
     providedIn: 'root'
