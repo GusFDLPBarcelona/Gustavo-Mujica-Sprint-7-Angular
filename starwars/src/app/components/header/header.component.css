@@ -128,3 +128,7 @@ nav::after {
 .card span {
     display: block;
 }
+
+.body header{
+    height: 214px;
+}

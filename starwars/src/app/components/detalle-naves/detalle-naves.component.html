@@ -1,8 +1,26 @@
 <app-header></app-header>
 <div class="naveCard">
-    <img [src]="imageUrl" />
-    <h2>{{ nave.name }}</h2>
-    <p><strong>Modelo:</strong> {{ nave.model }}</p>
-    <p><strong>Fabricante:</strong> {{ nave.manufacturer }}</p>
-    <p><strong>Costo en créditos:</strong> {{ nave.cost_in_credits }}</p>
+    <div class="image-container">
+        <img [src]="imageUrl" alt="Imagen de la nave" />
+    </div>
+    <div class="details-container">
+        <div class="name">{{ nave.name }}</div>
+        <div class="details">
+            <p><strong>Modelo:</strong> {{ nave.model }}</p>
+            <p><strong>Fabricante:</strong> {{ nave.manufacturer }}</p>
+            <p><strong>Costo en créditos:</strong> {{ nave.cost_in_credits }}</p>
+            <div class="columns">
+                <div class="column">
+
+                    <p><strong>Longitud:</strong> {{ nave.length }}</p>
+                    <p><strong>Velocidad máxima:</strong> {{ nave.max_atmosphering_speed }}</p>
+                </div>
+                <div class="column">
+
+                    <p><strong>Tripulación:</strong> {{ nave.crew }}</p>
+                    <p><strong>Pasajeros:</strong> {{ nave.passengers }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
