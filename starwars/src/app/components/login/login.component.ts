@@ -9,6 +9,9 @@ import { HeaderComponent } from '../header/header.component';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
+  navegarALogin() {
+    throw new Error('Method not implemented.');
+  }
 
 
   ngOnInit() {

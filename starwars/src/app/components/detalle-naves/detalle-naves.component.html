@@ -1,4 +1,11 @@
 <app-header></app-header>
+
+<div class="body">
+    <div class="header-container">
+        <div class="line"></div>
+        <div class="title">STARSHIP</div>
+    </div>
+</div>
 <div class="naveCard">
     <div class="image-container">
         <img [src]="imageUrl" alt="Imagen de la nave" />
@@ -6,17 +13,17 @@
     <div class="details-container">
         <div class="name">{{ nave.name }}</div>
         <div class="details">
-            <p><strong>Modelo:</strong> {{ nave.model }}</p>
-            <p><strong>Fabricante:</strong> {{ nave.manufacturer }}</p>
-            <p><strong>Costo en créditos:</strong> {{ nave.cost_in_credits }}</p>
+            <p>Esta nave es del modelo {{ nave.model }} del fabricante {{ nave.manufacturer }}. Tiene una carga útil
+                de {{ nave.cargo_capacity }} Tn., lo que le permite un rango de autonomía de {{ nave.consumables }}
+                en el espacio, sin repostar.</p>
             <div class="columns">
                 <div class="column">
-
+                    <p><strong>Costo en créditos:</strong> {{ nave.cost_in_credits }}</p>
                     <p><strong>Longitud:</strong> {{ nave.length }}</p>
+                    <p><strong>Hyperdrive:</strong> {{ nave.hyperdrive_rating }}</p>
                     <p><strong>Velocidad máxima:</strong> {{ nave.max_atmosphering_speed }}</p>
                 </div>
                 <div class="column">
-
                     <p><strong>Tripulación:</strong> {{ nave.crew }}</p>
                     <p><strong>Pasajeros:</strong> {{ nave.passengers }}</p>
                 </div>
