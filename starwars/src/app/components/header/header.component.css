@@ -10,6 +10,7 @@
     z-index: 1000;
     background-color: black;
     margin-bottom: 12rem;
+    z-index: 2000;
 }
 .banner {
     background-color: black;

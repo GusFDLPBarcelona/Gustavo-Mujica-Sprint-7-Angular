@@ -1,8 +1,12 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden !important; 
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden !important; 
+}
+
+.animacion {
+  background-color: transparent;
 }
 
 .star-field {
@@ -12,19 +16,26 @@ body, html {
   overflow: hidden !important;
 }
 
+#stars-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; 
+}
+
 .star {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: white;
-  overflow: hidden !important;
+  border-radius: 50%;
 }
 
 #board {
     position: relative;
     z-index: 1000; 
-    background-color: black;
-    color: white;
+    
+    
     text-align: center;
     padding: 20px;
     width: 100%; 
@@ -47,13 +58,6 @@ body, html {
 body {
   margin: 0;
   background-color: black;
-}
-
-.star {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  background-color: white;
 }
 
 
@@ -125,7 +129,7 @@ p {
 #board:after {    
   position: absolute;
   content: ' ';
-  bottom: 60%;
+  bottom: 100%;
   left: 0;
   right: 0;
   top: 0;
@@ -136,6 +140,7 @@ p {
   animation: scroll 100s linear 2s;
   position: absolute;
   top: 100%;
+  font-size: 2vw;
 }
 
 #title, #subtitle {
@@ -147,6 +152,51 @@ p {
         top: 100%;
     }
     100% {
-        top: -170%;
+        top: -300%;
     }
+}
+
+@media (max-width: 1024px) {
+  #content {
+    font-size: 3vw; /* Ajustar el tamaño del texto para pantallas medianas */
+    animation: scrollMedium 100s linear 2s;
+  }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  #content {
+    font-size: 4vw; /* Ajustar el tamaño del texto para pantallas pequeñas */
+    animation: scrollSmall 100s linear 2s;
+  }
+}
+
+/* Animación de texto para pantallas grandes */
+@keyframes scroll {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -100%;
+  }
+}
+
+/* Animación de texto para pantallas medianas */
+@keyframes scrollMedium {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -150%; /* Ajustar la posición final para pantallas medianas */
+  }
+}
+
+/* Animación de texto para pantallas pequeñas */
+@keyframes scrollSmall {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -200%; /* Ajustar la posición final para pantallas pequeñas */
+  }
 }

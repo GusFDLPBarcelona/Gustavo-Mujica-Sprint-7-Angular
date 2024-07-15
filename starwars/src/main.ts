@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: "home", component: HomeComponent, pathMatch: 'full' },
   { path: "starships", component: ListaNavesComponent, pathMatch: 'full' },
   { path: "login", component: LoginComponent, pathMatch: 'full' },
-  { path: ":nave.url", component: DetalleNavesComponent, resolve: { nave: NaveResolver } },
+  { path: ":nave.url", component: DetalleNavesComponent, resolve: { nave: NaveResolver }, pathMatch: 'full' },
 ]
 
 bootstrapApplication(AppComponent, {
