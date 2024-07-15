@@ -15,7 +15,7 @@
     background-color: #414141;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(131, 131, 131, 0.1);
+    box-shadow: 0 2px 2px #414141;
 }
 
 .login-container h2 {
@@ -40,10 +40,27 @@
 .login-container button {
     display: block;
     margin-left: auto;
-    padding: 10px 20px;
+    padding: 8px 20px;
     background-color: #5181b4;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+    line-height: 1.5;
+    box-shadow: 0 1px #3b5998; 
+    transition: all 0.2s ease;
+}
+.campo {
+    background-color: rgb(161, 161, 161);
+    border-radius: 7px;
+}
+
+.colorLog {
+    color: rgb(161, 161, 161); 
+}
+
+.login-container button:active {
+    box-shadow: 0 2px #3b5998; 
+    transform: translateY(2px); 
 }

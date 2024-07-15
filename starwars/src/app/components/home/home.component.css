@@ -2,7 +2,22 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; 
+    overflow: hidden !important; 
+}
+
+.star-field {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden !important;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  overflow: hidden !important;
 }
 
 #board {
@@ -12,6 +27,8 @@ body, html {
     color: white;
     text-align: center;
     padding: 20px;
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .intro {
