@@ -14,8 +14,8 @@
         <div class="name">{{ nave.name }}</div>
         <div class="details">
             <p>Esta nave es del modelo {{ nave.model }} del fabricante {{ nave.manufacturer }}. Tiene una carga útil
-                de {{ nave.cargo_capacity }} Tn., lo que le permite un rango de autonomía de {{ nave.consumables }}
-                en el espacio, sin repostar.</p>
+                de {{ nave.cargo_capacity }} Kg., lo que le permite un rango de autonomía de {{ nave.consumables }}
+                en el espacio, sin reabastecerse.</p>
             <div class="columns">
                 <div class="column">
                     <p><strong>Costo en créditos:</strong> {{ nave.cost_in_credits }}</p>
@@ -26,6 +26,8 @@
                 <div class="column">
                     <p><strong>Tripulación:</strong> {{ nave.crew }}</p>
                     <p><strong>Pasajeros:</strong> {{ nave.passengers }}</p>
+                    <p><strong>Velocidad atmosférica:</strong> {{ nave.max_atmosphering_speed }}</p>
+                    <p><strong>Medida de largo:</strong> {{ nave.length }} metros.</p>
                 </div>
             </div>
         </div>

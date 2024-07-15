@@ -1,6 +1,6 @@
 .body {
     background-color: black;
-    padding-top: 7rem; 
+    padding-top: 7rem;
 }
 
 .naveCard {
@@ -12,7 +12,7 @@
     border-radius: 10px; 
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 320px auto 20px; 
+    margin: 180px auto 20px; 
 }
 
 .naveCard .image-container {
@@ -50,7 +50,7 @@
 .naveCard .details-container .details .columns {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    
 }
 
 .naveCard .details-container .details .columns .column {

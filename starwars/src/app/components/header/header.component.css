@@ -100,7 +100,9 @@ nav::after {
 } 
 
 .nav-link.active {
-    border-bottom: 2px solid #757575
+    border-bottom: 2px solid #0059ff !important;
+    border-left: 2px solid #757575 !important;
+     border-right: 2px solid #757575 !important;
 }
 
 .card-container {

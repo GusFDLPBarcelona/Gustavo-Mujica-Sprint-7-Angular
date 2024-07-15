@@ -15,3 +15,24 @@ import { LoginComponent } from '../login/login.component';
 export class HomeComponent {
 
 }
+
+const numStars: number = 100;
+
+// Función para obtener una posición aleatoria
+function getRandomPosition(): [number, number] {
+  const y: number = window.innerHeight;
+  const x: number = window.innerWidth;
+  const randomY: number = Math.floor(Math.random() * y);
+  const randomX: number = Math.floor(Math.random() * x);
+  return [randomY, randomX];
+}
+
+// Por cada estrella que queremos mostrar
+for (let i = 0; i < numStars; i++) {
+  let star: HTMLDivElement = document.createElement("div");
+  star.className = "star";
+  const [top, left] = getRandomPosition();
+  star.style.top = `${top}px`;
+  star.style.left = `${left}px`;
+  document.body.appendChild(star);
+}
