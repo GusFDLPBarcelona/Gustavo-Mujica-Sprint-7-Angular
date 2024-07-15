@@ -33,12 +33,15 @@ body, html {
 
 .intro {
     position: relative;
-    z-index: 2; 
+    animation: intro 6s ease-out 3s; 
     background-color: black;
     color: yellow;
     text-align: center;
     font-size: 1.5rem;
     padding: 20px;
+    opacity: 0;
+     width: 60%;
+
 }
 
 body {
@@ -81,17 +84,6 @@ body {
     }
 }
 
-
-.logo {    
-    position: absolute;
-    top: 20%;
-    left: 45%;
-    z-index: 1;
-    margin: auto;
-    animation: logo 9s ease-out 9s;
-    opacity: 0;
-}
-
 @keyframes logo {
     0% {
         width: 18em;        
@@ -116,7 +108,7 @@ p {
 
 #board {
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
-  transform: perspective(400px) rotateX(25deg);
+  transform: perspective(400px) rotateX(30deg);
   transform-origin: 50% 100%;
   text-align: justify;
   position: absolute;
@@ -141,7 +133,7 @@ p {
 
 
 #content {
-  animation: scroll 100s linear 16s;
+  animation: scroll 100s linear 2s;
   position: absolute;
   top: 100%;
 }
