@@ -2,12 +2,12 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Evitar scroll innecesario */
+    overflow: hidden; 
 }
 
 #board {
     position: relative;
-    z-index: 1000; /* Asegurarse de que el contenido esté por encima de otros elementos */
+    z-index: 1000; 
     background-color: black;
     color: white;
     text-align: center;
@@ -16,7 +16,7 @@ body, html {
 
 .intro {
     position: relative;
-    z-index: 2; /* Asegurarse de que la sección intro esté por encima de otros elementos */
+    z-index: 2; 
     background-color: black;
     color: yellow;
     text-align: center;
@@ -36,7 +36,7 @@ body {
   background-color: white;
 }
 
-/* Set the animation, color, size and hide the text */
+
 .intro {
     position: absolute;
     top: 30%;
@@ -64,7 +64,7 @@ body {
     }
 }
 
-/* Set the animation & hide the logo */
+
 .logo {    
     position: absolute;
     top: 20%;
@@ -75,11 +75,6 @@ body {
     opacity: 0;
 }
 
-.logo svg {
-    width: inherit;
-}
-
-/* Scale the logo down and maintain it centered */
 @keyframes logo {
     0% {
         width: 18em;        
@@ -101,10 +96,10 @@ p {
   color: #FFFF82;
 }
 
-/* Set the font, lean the board, position it */
+
 #board {
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
-  transform: perspective(300px) rotateX(25deg);
+  transform: perspective(400px) rotateX(25deg);
   transform-origin: 50% 100%;
   text-align: justify;
   position: absolute;
@@ -127,7 +122,7 @@ p {
   top: 0;
 }
 
-/* Set the scrolling animation and position it */
+
 #content {
   animation: scroll 100s linear 16s;
   position: absolute;

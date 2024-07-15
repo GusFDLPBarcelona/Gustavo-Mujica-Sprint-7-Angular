@@ -18,7 +18,7 @@ export class HomeComponent {
 
 const numStars: number = 100;
 
-// Función para obtener una posición aleatoria
+
 function getRandomPosition(): [number, number] {
   const y: number = window.innerHeight;
   const x: number = window.innerWidth;
@@ -27,7 +27,7 @@ function getRandomPosition(): [number, number] {
   return [randomY, randomX];
 }
 
-// Por cada estrella que queremos mostrar
+
 for (let i = 0; i < numStars; i++) {
   let star: HTMLDivElement = document.createElement("div");
   star.className = "star";
