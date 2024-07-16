@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div class="register-container">
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="username">Username</label>
+            <input id="username" formControlName="username" type="text" required>
+            @if (registerForm.controls['username'].invalid && registerForm.controls['username'].touched) {
+            <div>
+                @if (registerForm.controls['username'].errors?.['required']) {
+                <small>Username is required</small>
+                }
+            </div>
+            }
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input id="email" formControlName="email" type="email" required>
+            @if (registerForm.controls['email'].invalid && registerForm.controls['email'].touched) {
+            <div>
+                @if (registerForm.controls['email'].errors?.['required']) {
+                <small>Email is required</small>
+                }
+                @if (registerForm.controls['email'].errors?.['email']) {
+                <small>Enter a valid email</small>
+                }
+            </div>
+            }
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input id="password" formControlName="password" type="password" required>
+            @if (registerForm.controls['password'].invalid && registerForm.controls['password'].touched) {
+            <div>
+                @if (registerForm.controls['password'].errors?.['required']) {
+                <small>Password is required</small>
+                }
+                @if (registerForm.controls['password'].errors?.['minlength']) {
+                <small>Password must be at least 6 characters long</small>
+                }
+            </div>
+            }
+        </div>
+
+        <button type="submit" [disabled]="registerForm.invalid">Register</button>
+    </form>
+</div>

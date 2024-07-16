@@ -3,13 +3,15 @@
 <div class="login-container">
     <div id="stars-container"></div>
     <h2 class="colorLog">Login</h2>
-    <form>
+    <form [formGroup]="loginForm">
         <div class="form-group">
-            <input class="campo" type="email" id="email" name="email" placeholder="Email" required>
+            <input class="campo" type="email" id="email" name="email" placeholder="Email" formControlName="email"
+                required>
         </div>
         <div class="form-group">
-            <input class="campo" type="password" id="password" name="password" placeholder="Password" required>
+            <input class="campo" type="password" id="password" name="password" placeholder="Password"
+                formControlName="password" required>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" (click)="verificarLogin()">Login</button>
     </form>
 </div>

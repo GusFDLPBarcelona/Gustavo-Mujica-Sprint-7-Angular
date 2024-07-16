@@ -1,34 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { LoginService } from '../../services/login.service';
+import { iLogin } from '../../interfaces/usuarios';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
+
+  loginForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')
+  });
+  token: any;
+
+  constructor(private loginService: LoginService) { }
+
+
   navegarALogin() {
     throw new Error('Method not implemented.');
   }
 
 
   ngOnInit() {
-    console.log("login component!!!");
-    this.createStars();
+    this.loginForm.reset();
   }
 
-  createStars(): void {
-    const starsContainer = document.getElementById('stars-container');
-    if (starsContainer) {
-      for (let i = 0; i < 100; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.top = `${Math.random() * 100}%`;
-        star.style.left = `${Math.random() * 100}%`;
-        starsContainer.appendChild(star);
-      }
-    }
+  verificarLogin(): any {
+    this.loginService.login(this.loginForm.value as iLogin).subscribe((token) => {
+      console.log(token);
+      this.token = token;
+    })
   }
+
+
+
+
+
+
 }

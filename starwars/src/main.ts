@@ -9,6 +9,9 @@ import { DetalleNavesComponent } from './app/components/detalle-naves/detalle-na
 import { NaveResolver } from './app/services/nave-resolver.service';
 import { LoginComponent } from './app/components/login/login.component';
 import { importProvidersFrom } from '@angular/core';
+import { RegisterComponent } from './app/components/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 export const routes: Routes = [
@@ -16,15 +19,20 @@ export const routes: Routes = [
   { path: "home", component: HomeComponent, pathMatch: 'full' },
   { path: "starships", component: ListaNavesComponent, pathMatch: 'full' },
   { path: "login", component: LoginComponent, pathMatch: 'full' },
+  { path: 'register', component: RegisterComponent, pathMatch: 'full' },
   { path: ":nave.url", component: DetalleNavesComponent, resolve: { nave: NaveResolver }, pathMatch: 'full' },
+
+
+
 ]
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
     provideRouter(routes),
-    importProvidersFrom(RouterModule),
+    importProvidersFrom(RouterModule, ReactiveFormsModule),
+
   ]
-}
-).catch((err) => console.error(err));
+})
+  .catch((err) => console.error(err));
 

@@ -4,12 +4,13 @@ import { HeaderComponent } from "../header/header.component";
 import { DetalleNavesComponent } from '../detalle-naves/detalle-naves.component';
 import { LoginComponent } from '../login/login.component';
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [ListaNavesComponent, HeaderComponent, DetalleNavesComponent, LoginComponent],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'] // Corregido styleUrl a styleUrls
+  styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 
