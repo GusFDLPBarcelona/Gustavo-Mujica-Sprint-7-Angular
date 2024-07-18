@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -12,15 +13,19 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  @Input('estoyLogueado') estoyLogueado?: boolean;
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+
+
 
   onSubmit() {
     if (this.registerForm.valid) {
@@ -37,14 +42,15 @@ export class HeaderComponent {
   }
 
   navegarALogin() {
-    this.router.navigate(['login']).then(success => {
-      console.log('Navigated to login:', success);
-    }).catch(err => {
-      console.error('Navigation to login failed:', err);
-    });
+    this.router.navigate(['login']);
   }
 
   navegarASignUp() {
     this.router.navigate(['register']);
+  }
+
+  logOut(): void {
+    this.loginService.logOut();
+    this.router.navigate(['home']);
   }
 }

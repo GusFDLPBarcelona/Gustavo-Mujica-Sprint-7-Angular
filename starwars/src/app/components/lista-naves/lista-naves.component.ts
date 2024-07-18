@@ -68,7 +68,7 @@ export class ListaNavesComponent implements OnInit {
   }
 
   getNaveSeleccionada(item: Naves): void {
-    const url = `${item.url}`;
-    this.router.navigate([encodeURIComponent(url)]);
+    if (this..getUrl(item.url);
+    this.router.navigate([encodeURIComponent(item.url)]);
   }
 }

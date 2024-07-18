@@ -5,6 +5,7 @@ import { iLogin } from '../../interfaces/usuarios';
 import { HeaderComponent } from "../header/header.component";
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { NavesService } from '../../services/naves.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private authService: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private loginService: LoginService, private authService: AuthService, private router: Router, private navesService: NavesService) { }
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -29,17 +30,21 @@ export class LoginComponent implements OnInit {
   }
 
   verificarLogin() {
+    console.log(this.loginForm.valid);
     if (this.loginForm.valid) {
       const loginData: iLogin = {
         email: this.loginForm.value.email!,
         password: this.loginForm.value.password!
       };
-      this.authService.login(loginData).subscribe(
-        response => {
+      this.loginService.login(loginData).subscribe(
+        (response: any) => {
+          localStorage.setItem('authToken', response.accessToken);
           console.log('Login successful', response);
-          this.router.navigate(['/']); // Redirigir al home u otra ruta protegida
+          const url = this.navesService.getMyUrl();
+          if (url) { this.router.navigate([url]); }
+
         },
-        error => {
+        (error: any) => {
           console.error('Login failed', error);
           this.errorMessage = 'Login failed. Please check your credentials and try again.';
         }

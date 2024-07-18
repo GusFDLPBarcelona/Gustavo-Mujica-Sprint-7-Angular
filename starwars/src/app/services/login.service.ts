@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
 import { iLogin, iUsuario } from '../interfaces/usuarios';
 
 @Injectable({
@@ -9,18 +9,13 @@ import { iLogin, iUsuario } from '../interfaces/usuarios';
 export class LoginService {
 
   private urlDDBB = 'http://localhost:3000';
+  private tokenSubject = new BehaviorSubject<string | null>(null);
+
 
   constructor(private http: HttpClient) { }
 
   registrarUsuario(usuario: iUsuario): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'X-Powered-By': 'tinyhttp',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, HEAD, PUT, PATCH, POST, DELETE',
-    });
-
-    return this.http.post<any>(`${this.urlDDBB}/users`, usuario, { headers })
+    return this.http.post<any>(`${this.urlDDBB}/users`, usuario)
       .pipe(
         catchError(this.handleError)
       );
@@ -33,17 +28,21 @@ export class LoginService {
       );
   }
 
-  login(login: any): Observable<any> {
-    console.log(login);
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    const email = login.email;
-    const password = login.password
-    return this.http.post(`${this.urlDDBB}/login`, { email, password }, { headers })
-      .pipe(
-        catchError(this.handleError)
-      );
+  login(credentials: iLogin): any {
+    return this.http.post<{ token: string }>(`${this.urlDDBB}/login`, credentials)
+  }
+
+  logOut(): void {
+    this.tokenSubject.next(null);
+    localStorage.clear();
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.tokenSubject.value && !!localStorage.getItem('authToken');
+  }
+
+  setearToken(token: string): void {
+    this.tokenSubject.next(token);
   }
 
   private handleError(error: any) {
@@ -51,3 +50,5 @@ export class LoginService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }
+
+

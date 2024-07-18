@@ -3,8 +3,11 @@
         <div class="banner align-content-md-center">
             <img class="imageBanner" src="assets\download.png" />
             <div class="buttons">
-                <!--<a href="login">login</a>-->
+                @if(!estoyLogueado) {
                 <button class="info" (click)="navegarALogin()">Log in</button>
+                } @else {
+                <button class="info" (click)="logOut()">Log out</button>
+                }
                 <span class="separador">//</span>
                 <button class="info" (click)="navegarASignUp()">Sign up</button>
             </div>

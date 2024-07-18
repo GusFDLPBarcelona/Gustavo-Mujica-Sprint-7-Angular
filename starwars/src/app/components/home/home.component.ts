@@ -3,6 +3,7 @@ import { ListaNavesComponent } from '../lista-naves/lista-naves.component';
 import { HeaderComponent } from "../header/header.component";
 import { DetalleNavesComponent } from '../detalle-naves/detalle-naves.component';
 import { LoginComponent } from '../login/login.component';
+import { LoginService } from '../../services/login.service';
 
 
 @Component({
@@ -13,11 +14,14 @@ import { LoginComponent } from '../login/login.component';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  estoyLogueado?: boolean;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.createStars();
+    this.estoyLogueado = this.loginService.isAuthenticated();
+    console.log("estoy logueado?", this.estoyLogueado);
+    //this.createStars();
     window.addEventListener('resize', this.createStars.bind(this));
   }
 
