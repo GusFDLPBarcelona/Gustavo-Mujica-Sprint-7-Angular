@@ -3,8 +3,8 @@
     <h2>Register</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div>
-            <label for="username">Username</label>
-            <input id="username" formControlName="username" type="text" required>
+            <label class="colorLog" for="username">Username</label>
+            <input class="campo" id="username" formControlName="username" type="text" required>
             @if (registerForm.controls['username'].invalid && registerForm.controls['username'].touched) {
             <div>
                 @if (registerForm.controls['username'].errors?.['required']) {
@@ -16,7 +16,7 @@
 
         <div>
             <label for="email">Email</label>
-            <input id="email" formControlName="email" type="email" required>
+            <input class="campo" id="email" formControlName="email" type="email" required>
             @if (registerForm.controls['email'].invalid && registerForm.controls['email'].touched) {
             <div>
                 @if (registerForm.controls['email'].errors?.['required']) {
@@ -31,7 +31,7 @@
 
         <div>
             <label for="password">Password</label>
-            <input id="password" formControlName="password" type="password" required>
+            <input class="campo" id="password" formControlName="password" type="password" required>
             @if (registerForm.controls['password'].invalid && registerForm.controls['password'].touched) {
             <div>
                 @if (registerForm.controls['password'].errors?.['required']) {

@@ -1,10 +1,11 @@
+export interface iLogin {
+    email: string,
+    password: string
+}
+
 export interface iUsuario {
     nombre: string,
     email: string,
-    contraseña: string
+    password: string
 }
 
-export interface iLogin {
-    email: string,
-    contraseña: string
-}

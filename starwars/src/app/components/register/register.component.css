@@ -1,11 +1,24 @@
-.register-container {
-  max-width: 400px;
-  margin: auto;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-top: 15rem;
 
+.register-container {
+    max-width: 100%;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 55%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #414141;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px #414141;
+    z-index: 1; 
+}
+
+.campo {
+  background-color: #757575;
 }
 
 .register-container h2 {
@@ -14,32 +27,45 @@
 
 .register-container div {
   margin-bottom: 1rem;
+  max-width: 400px;
 }
 
 .register-container label {
   display: block;
   margin-bottom: 0.5rem;
+  color: #757575;
 }
 
 .register-container input {
   width: 100%;
   padding: 0.5rem;
   box-sizing: border-box;
+  color: #757575;
 }
 
 .register-container small {
   color: red;
 }
 
-.register-container button {
-  width: 100%;
-  padding: 0.5rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
+.colorLog {
+    color: rgb(161, 161, 161); 
 }
 
-label{
+.register-container button {
+    display: block;
+    margin-left: auto;
+    padding: 8px 20px;
+    background-color: #5181b4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1.5;
+    box-shadow: 0 1px #3b5998; 
+    transition: all 0.2s ease;
+}
+
+.label{
     color: #757575;
 }

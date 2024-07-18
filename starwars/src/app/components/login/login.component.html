@@ -1,9 +1,9 @@
 <app-header></app-header>
 
 <div class="login-container">
-    <div id="stars-container"></div>
+
     <h2 class="colorLog">Login</h2>
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (submit)="verificarLogin()">
         <div class="form-group">
             <input class="campo" type="email" id="email" name="email" placeholder="Email" formControlName="email"
                 required>
@@ -12,6 +12,6 @@
             <input class="campo" type="password" id="password" name="password" placeholder="Password"
                 formControlName="password" required>
         </div>
-        <button type="submit" (click)="verificarLogin()">Login</button>
+        <button type="submit">Login</button>
     </form>
 </div>

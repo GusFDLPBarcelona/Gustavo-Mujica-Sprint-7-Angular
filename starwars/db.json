@@ -1,28 +1,9 @@
 {
   "users": [
     {
-      "id": "d0a1",
-      "username": "Gusi",
       "email": "gusimola@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "4ac3",
-      "username": "NANDO",
-      "email": "gusimola@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "e2b6",
-      "username": "Roy",
-      "email": "lslsls@kdkdkd.ldld",
-      "password": "rrrrrrrrr"
-    },
-    {
-      "id": "59cc",
-      "username": "Roy",
-      "email": "asdf@lskdjf.lc",
-      "password": "eeeeeeeee"
+      "password": "$2a$10$53jEdtJL/PlUX2sMDDyRuuVxT7ybWQ6.MiXjT0.I9eSkjevPcK5JK",
+      "id": 1
     }
   ]
 }

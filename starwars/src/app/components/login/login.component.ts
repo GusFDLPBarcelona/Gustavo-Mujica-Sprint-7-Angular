@@ -1,46 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { iLogin } from '../../interfaces/usuarios';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HeaderComponent, ReactiveFormsModule],
+  imports: [ReactiveFormsModule, HeaderComponent],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
   token: any;
+  errorMessage: string | null = null;
 
-  constructor(private loginService: LoginService) { }
 
-
-  navegarALogin() {
-    throw new Error('Method not implemented.');
-  }
-
+  constructor(private fb: FormBuilder, private loginService: LoginService) { }
 
   ngOnInit() {
     this.loginForm.reset();
   }
 
-  verificarLogin(): any {
-    this.loginService.login(this.loginForm.value as iLogin).subscribe((token) => {
-      console.log(token);
-      this.token = token;
-    })
+  verificarLogin() {
+    if (this.loginForm.valid) {
+      const loginData: iLogin = {
+        email: this.loginForm.value.email!,
+        password: this.loginForm.value.password!
+      };
+      this.loginService.login(loginData).subscribe(
+        response => {
+          console.log('Login successful', response);
+        },
+        error => {
+          console.error('Login failed', error);
+        }
+      );
+    } else {
+      console.error('Form is invalid');
+    }
   }
 
 
+  borrarUsuario() {
 
-
-
-
+  }
 }

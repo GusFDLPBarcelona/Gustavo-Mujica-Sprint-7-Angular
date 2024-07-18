@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, Subject, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { iLogin, iUsuario } from '../interfaces/usuarios';
 
 @Injectable({
@@ -10,8 +10,6 @@ export class LoginService {
 
   private urlDDBB = 'http://localhost:3000';
 
-  private errores = new Subject()
-
   constructor(private http: HttpClient) { }
 
   registrarUsuario(usuario: iUsuario): Observable<any> {
@@ -20,35 +18,36 @@ export class LoginService {
       'X-Powered-By': 'tinyhttp',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, HEAD, PUT, PATCH, POST, DELETE',
-      'Connection': 'keep-alive'
     });
-    if (this.getEmails(usuario.email)) {
-      return this.http.post<any>(`${this.urlDDBB}/users`, usuario, { headers })
-    } else {
-      this.errores.next('El usuario ya existe')
-      return this.errores.asObservable();
-    }
 
+    return this.http.post<any>(`${this.urlDDBB}/users`, usuario, { headers })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  getEmails(email: string): boolean {
-    this.http.get(`${this.urlDDBB}/users`).subscribe((todo) => {
-      const usuariosList = todo;
-      console.log(usuariosList);
-    });
-    return true;
+  getEmails(email: string): Observable<any> {
+    return this.http.get(`${this.urlDDBB}/users`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  login(login: iLogin): Observable<any> {
+  login(login: any): Observable<any> {
     console.log(login);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-Powered-By': 'tinyhttp',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, HEAD, PUT, PATCH, POST, DELETE',
-      'Connection': 'keep-alive',
-      'etag': 'W/"9-0gXL1ngzMqISxa6S1zx3F4wtLyg"'
     });
-    return this.http.post(`${this.urlDDBB}/login`, login, { headers });
+    const email = login.email;
+    const password = login.password
+    return this.http.post(`${this.urlDDBB}/login`, { email, password }, { headers })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: any) {
+    console.error('An error occurred', error);
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }
