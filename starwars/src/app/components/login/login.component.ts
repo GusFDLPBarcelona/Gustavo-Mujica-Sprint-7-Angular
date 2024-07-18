@@ -3,15 +3,19 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { LoginService } from '../../services/login.service';
 import { iLogin } from '../../interfaces/usuarios';
 import { HeaderComponent } from "../header/header.component";
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule, HeaderComponent],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
+
+  constructor(private fb: FormBuilder, private loginService: LoginService, private authService: AuthService, private router: Router) { }
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -19,9 +23,6 @@ export class LoginComponent implements OnInit {
   });
   token: any;
   errorMessage: string | null = null;
-
-
-  constructor(private fb: FormBuilder, private loginService: LoginService) { }
 
   ngOnInit() {
     this.loginForm.reset();
@@ -33,19 +34,20 @@ export class LoginComponent implements OnInit {
         email: this.loginForm.value.email!,
         password: this.loginForm.value.password!
       };
-      this.loginService.login(loginData).subscribe(
+      this.authService.login(loginData).subscribe(
         response => {
           console.log('Login successful', response);
+          this.router.navigate(['/']); // Redirigir al home u otra ruta protegida
         },
         error => {
           console.error('Login failed', error);
+          this.errorMessage = 'Login failed. Please check your credentials and try again.';
         }
       );
     } else {
       console.error('Form is invalid');
     }
   }
-
 
   borrarUsuario() {
 

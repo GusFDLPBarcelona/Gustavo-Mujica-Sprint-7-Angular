@@ -4,6 +4,12 @@
       "email": "gusimola@gmail.com",
       "password": "$2a$10$53jEdtJL/PlUX2sMDDyRuuVxT7ybWQ6.MiXjT0.I9eSkjevPcK5JK",
       "id": 1
+    },
+    {
+      "email": "buda@buda.com",
+      "password": "$2a$10$lfskT2P46pYNsfc11/cl2uxoAU0fs0V8zW4xnVUrUuPcF2oFs1tXm",
+      "username": "buda ",
+      "id": 2
     }
   ]
 }

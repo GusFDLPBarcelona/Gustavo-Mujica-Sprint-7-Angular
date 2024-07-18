@@ -14,9 +14,9 @@ export class NaveResolver implements Resolve<any> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
         const url = decodeURIComponent(route.paramMap.get('nave.url')!);
-        // Lógica para obtener los datos necesarios
+
         return this.navesService.getNaveDato(url!).pipe(
-            map((response: HttpResponse<Naves>) => response.body as Naves)//este resultado se guarda en route.data, para recuperarlo en DetalleNavesComponent
+            map((response: HttpResponse<Naves>) => response.body as Naves)
         )
     }
 }
