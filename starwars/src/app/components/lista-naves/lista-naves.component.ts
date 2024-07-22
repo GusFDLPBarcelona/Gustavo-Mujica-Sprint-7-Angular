@@ -60,15 +60,10 @@ export class ListaNavesComponent implements OnInit {
     }
   }
 
-  seleccionarNave(url: string): void {
-    const id = url.split('/').filter(Boolean).pop() || '';
-    this.servicio.getNaveDetalle(id).subscribe((data: Nave) => {
-      this.naveSeleccionada = data;
-    });
-  }
 
   getNaveSeleccionada(item: Naves): void {
-    if (this..getUrl(item.url);
+    this.servicio.getUrl(item.url);
     this.router.navigate([encodeURIComponent(item.url)]);
   }
 }
+

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private loginService: LoginService, private authService: AuthService, private router: Router, private navesService: NavesService) { }
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
   token: any;
@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm.reset();
+    this.loginForm.value.email = '';
+    this.loginForm.value.password = '';
   }
 
   verificarLogin() {
@@ -40,9 +42,8 @@ export class LoginComponent implements OnInit {
         (response: any) => {
           localStorage.setItem('authToken', response.accessToken);
           console.log('Login successful', response);
-          const url = this.navesService.getMyUrl();
-          if (url) { this.router.navigate([url]); }
-
+          const url = encodeURIComponent(this.navesService.getMyUrl());
+          this.router.navigate([url]);
         },
         (error: any) => {
           console.error('Login failed', error);

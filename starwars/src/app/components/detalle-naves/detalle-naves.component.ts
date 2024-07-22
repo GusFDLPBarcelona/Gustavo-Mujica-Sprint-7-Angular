@@ -31,16 +31,20 @@ export class DetalleNavesComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe((data: any) => {
-      console.log(data.nave);
-      this.nave = data.nave;
-      let imagenUrl = this.nave.url;
-      console.log(imagenUrl);
-      const regex = 'https://swapi.py4e.com/api/starships/';
-      const match = imagenUrl.replace(regex, '').replace('/', '');
-      this.imageUrl = this.navesService.getNaveImagen(match);
-
-      console.log(match);
+      if (data) {
+        const id = data.nave.url.replace('https://swapi.py4e.com/api/starships/', '').replace('/', '');
+        this.cargarDatos(id);
+      }
     });
 
   }
+
+  cargarDatos(id: string): void {
+    this.navesService.getNaveDetalle(Number(id)).subscribe((nave: any) => {
+      this.nave = nave;
+    });
+    this.imageUrl = this.navesService.getNaveImagen(this.nave.id);
+    console.log(this.imageUrl);
+  }
 }
+

@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Naves, Nave } from '../interfaces/naves';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
@@ -13,7 +13,7 @@ export class NavesService {
   private detalleUrl = 'https://swapi.dev/api/starships/';
   private imageBaseUrl = 'https://starwars-visualguide.com/assets/img';
   private siguienteUrl: string | null = null;
-  private urlSubject = new Subject();
+  private urlSubject = new BehaviorSubject<string>('');
 
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) { }
 
@@ -26,7 +26,7 @@ export class NavesService {
     return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
   }
 
-  getNaveDetalle(id: string): Observable<Nave> {
+  getNaveDetalle(id: number): Observable<Nave> {
     return this.httpClient.get<Nave>(`${this.detalleUrl}${id}`);
   }
 
@@ -47,8 +47,8 @@ export class NavesService {
     this.urlSubject.next(url);
   }
 
-  getMyUrl(): Observable<any> {
-    return this.urlSubject.asObservable();
+  getMyUrl(): string {
+    return this.urlSubject.getValue();
   }
 
   setSiguienteUrl(url: string | null): void {

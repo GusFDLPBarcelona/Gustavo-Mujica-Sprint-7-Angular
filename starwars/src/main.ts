@@ -10,7 +10,7 @@ import { LoginComponent } from './app/components/login/login.component';
 import { importProvidersFrom } from '@angular/core';
 import { RegisterComponent } from './app/components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthGuard } from './app/guard/auth.guard';
+import { authGuard } from './app/guard/auth.guard';
 
 
 export const routes: Routes = [
@@ -19,7 +19,7 @@ export const routes: Routes = [
   { path: "starships", component: ListaNavesComponent, pathMatch: 'full' },
   { path: "login", component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent, pathMatch: 'full' },
-  { path: ":nave.url", component: DetalleNavesComponent, resolve: { nave: NaveResolver }, pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: ":nave.url", component: DetalleNavesComponent, resolve: { nave: NaveResolver }, pathMatch: 'full', canActivate: [authGuard] },
 
 ]
 
@@ -30,5 +30,5 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(RouterModule, ReactiveFormsModule),
   ]
 })
-  .catch((err) => console.error(err));
+  .catch((err: any) => console.error(err));
 
