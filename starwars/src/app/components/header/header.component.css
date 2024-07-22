@@ -22,8 +22,8 @@
 }
 
 .imageBanner {
-    margin-Top: 0px;
-    height: 100%;
+    padding: 20px;
+    height: 90%;
     width: auto;
 }
 
@@ -95,7 +95,7 @@ nav::after {
 .nav-link.active {
     border-bottom: 2px solid #0059ff !important;
     border-left: 2px solid #757575 !important;
-     border-right: 2px solid #757575 !important;
+    border-right: 2px solid #757575 !important;
 }
 
 .body header{
