@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { LoginService } from '../../services/login.service';
 import { iUsuario } from '../../interfaces/usuarios';
+import { NavesService } from '../../services/naves.service';
 
 @Component({
   selector: 'app-register',
@@ -17,26 +18,38 @@ import { iUsuario } from '../../interfaces/usuarios';
 })
 export class RegisterComponent {
   registerForm = new FormGroup({
-    username: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl('')
   });
+  estoyLogueado?: boolean;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService, private navesService: NavesService) {
     this.registerForm = this.fb.group({
-      username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   ngOnInit(): void {
+    this.estoyLogueado = this.loginService.isAuthenticated();
     this.registerForm.reset();
   }
 
   onSubmit() {
     this.loginService.registrarUsuario(this.registerForm.value as iUsuario).subscribe((respuesta) => {
-      console.log(respuesta);
-    })
+      const url = encodeURIComponent(this.navesService.getMyUrl());
+      localStorage.setItem("accessToken", respuesta.accessToken);
+      if (url) {
+        this.router.navigate([url])
+      } else {
+        this.router.navigate(['home']);
+      }
+    },
+      (error: any) => {
+        console.error('Registro fallido', error);
+      });
+    this.registerForm.reset();
+
   }
+
 }

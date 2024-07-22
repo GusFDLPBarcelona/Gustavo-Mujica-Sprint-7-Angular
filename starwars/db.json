@@ -1,15 +1,24 @@
 {
   "users": [
     {
-      "email": "gusimola@gmail.com",
-      "password": "$2a$10$53jEdtJL/PlUX2sMDDyRuuVxT7ybWQ6.MiXjT0.I9eSkjevPcK5JK",
+      "email": "xavier@xav.com",
+      "password": "$2a$10$TqvdwsOE8qyeQFY.fODu5uBLDDf6fP1bOP2zyEFTSOsoTmRH7WOou",
       "id": 1
     },
     {
-      "email": "buda@buda.com",
-      "password": "$2a$10$lfskT2P46pYNsfc11/cl2uxoAU0fs0V8zW4xnVUrUuPcF2oFs1tXm",
-      "username": "buda ",
+      "email": "xxxxx@xx.ll",
+      "password": "$2a$10$i6Luj.zoRW0gnI/xUJZVDeSMCuliCRKD2tY7sJ4pw3ziaVIxVYE5W",
       "id": 2
+    },
+    {
+      "email": "wwwww@rrr.lll",
+      "password": "$2a$10$PrYRr0Mrh.NgiBiORksLC.CdVLMo4333/PmWb/cQxZBHPCTSaKdnS",
+      "id": 3
+    },
+    {
+      "email": "pepe@pepe.com",
+      "password": "$2a$10$e1/hgLUB92KNipeCKdM1b.zo5Rf/25Cd3bF05VSutKXp/AoBogszK",
+      "id": 4
     }
   ]
 }

@@ -1,22 +1,10 @@
-<app-header></app-header>
+<app-header [estoyLogueado]="estoyLogueado"></app-header>
 <div class="register-container">
-    <h2>Register</h2>
+    <h2 class="colorLog">Register</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div>
-            <label class="colorLog" for="username">Username</label>
-            <input class="campo" id="username" formControlName="username" type="text" required>
-            @if (registerForm.controls['username'].invalid && registerForm.controls['username'].touched) {
-            <div>
-                @if (registerForm.controls['username'].errors?.['required']) {
-                <small>Username is required</small>
-                }
-            </div>
-            }
-        </div>
-
-        <div>
-            <label for="email">Email</label>
-            <input class="campo" id="email" formControlName="email" type="email" required>
+            <input class="campo" type="email" id="email" name="email" placeholder="Email" formControlName="email"
+                required autocomplete="off">
             @if (registerForm.controls['email'].invalid && registerForm.controls['email'].touched) {
             <div>
                 @if (registerForm.controls['email'].errors?.['required']) {
@@ -30,8 +18,8 @@
         </div>
 
         <div>
-            <label for="password">Password</label>
-            <input class="campo" id="password" formControlName="password" type="password" required>
+            <input class="campo" id="password" formControlName="password" type="password" placeholder="Password"
+                required>
             @if (registerForm.controls['password'].invalid && registerForm.controls['password'].touched) {
             <div>
                 @if (registerForm.controls['password'].errors?.['required']) {

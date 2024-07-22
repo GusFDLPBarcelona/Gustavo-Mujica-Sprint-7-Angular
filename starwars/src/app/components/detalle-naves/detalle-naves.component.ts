@@ -6,6 +6,7 @@ import { Naves } from '../../interfaces/naves';
 import { HeaderComponent } from '../header/header.component';
 import { Observable } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { LoginService } from '../../services/login.service';
 
 
 @Component({
@@ -22,14 +23,19 @@ export class DetalleNavesComponent implements OnInit {
   imageUrl?: SafeUrl;
   listaNaves: any;
   imagenUrl: any;
+  defaultImage: string = 'assets/nonave.jpg';
+  estoyLogueado?: boolean;
+
 
   constructor(
     private route: ActivatedRoute,
     private navesService: NavesService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private loginService: LoginService,
   ) { }
 
   ngOnInit(): void {
+    this.estoyLogueado = this.loginService.isAuthenticated();
     this.route.data.subscribe((data: any) => {
       if (data) {
         const id = data.nave.url.replace('https://swapi.py4e.com/api/starships/', '').replace('/', '');
@@ -43,8 +49,12 @@ export class DetalleNavesComponent implements OnInit {
     this.navesService.getNaveDetalle(Number(id)).subscribe((nave: any) => {
       this.nave = nave;
     });
-    this.imageUrl = this.navesService.getNaveImagen(this.nave.id);
+    this.imageUrl = this.navesService.getNaveImagen(id);
     console.log(this.imageUrl);
+  }
+
+  nonave() {
+    this.imageUrl = this.defaultImage;
   }
 }
 

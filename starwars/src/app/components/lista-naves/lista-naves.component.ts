@@ -4,6 +4,7 @@ import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { Naves, Nave } from '../../interfaces/naves';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-lista-naves',
@@ -17,10 +18,12 @@ export class ListaNavesComponent implements OnInit {
   naveSeleccionada?: Nave;
   siguienteUrl: string | null = null;
   cargando: boolean = false;
+  estoyLogueado?: boolean;
 
-  constructor(private servicio: NavesService, private router: Router) { }
+  constructor(private servicio: NavesService, private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
+    this.estoyLogueado = this.loginService.isAuthenticated();
     this.cargarNaves();
   }
 

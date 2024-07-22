@@ -50,6 +50,7 @@ export class HeaderComponent {
   }
 
   logOut(): void {
+    this.estoyLogueado = false;
     this.loginService.logOut();
     this.router.navigate(['home']);
   }

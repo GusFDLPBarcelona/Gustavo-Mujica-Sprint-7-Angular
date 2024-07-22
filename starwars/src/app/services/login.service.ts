@@ -29,7 +29,7 @@ export class LoginService {
   }
 
   login(credentials: iLogin): any {
-    return this.http.post<{ token: string }>(`${this.urlDDBB}/login`, credentials)
+    return this.http.post<{ token: string }>(`${this.urlDDBB}/login`, credentials);
   }
 
   logOut(): void {
@@ -38,7 +38,7 @@ export class LoginService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.tokenSubject.value && !!localStorage.getItem('authToken');
+    return this.tokenSubject.value !== undefined && localStorage.getItem('accessToken') !== undefined;
   }
 
   setearToken(token: string): void {

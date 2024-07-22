@@ -15,6 +15,7 @@ import { NavesService } from '../../services/naves.service';
   styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
+  estoyLogueado?: boolean;
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private authService: AuthService, private router: Router, private navesService: NavesService) { }
 
@@ -25,7 +26,11 @@ export class LoginComponent implements OnInit {
   token: any;
   errorMessage: string | null = null;
 
+
+
+
   ngOnInit() {
+    this.estoyLogueado = this.loginService.isAuthenticated();
     this.loginForm.reset();
     this.loginForm.value.email = '';
     this.loginForm.value.password = '';
@@ -40,10 +45,18 @@ export class LoginComponent implements OnInit {
       };
       this.loginService.login(loginData).subscribe(
         (response: any) => {
-          localStorage.setItem('authToken', response.accessToken);
+
+          localStorage.setItem('accessToken', response.accessToken);
           console.log('Login successful', response);
           const url = encodeURIComponent(this.navesService.getMyUrl());
-          this.router.navigate([url]);
+          this.loginForm.reset();
+          if (url) {
+            this.router.navigate([url]);
+          } else {
+            this.router.navigate(['home']);
+          }
+
+
         },
         (error: any) => {
           console.error('Login failed', error);
@@ -53,6 +66,10 @@ export class LoginComponent implements OnInit {
     } else {
       console.error('Form is invalid');
     }
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/register']);
   }
 
   borrarUsuario() {

@@ -2,11 +2,15 @@
     padding-top: 7rem;
 }
 
-#login-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+@keyframes slide-up {
+    from {
+        transform: translate(-50%, 100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
 }
 
 .login-container {
@@ -23,6 +27,7 @@
     border-radius: 10px;
     box-shadow: 0 2px 2px #414141;
     z-index: 1; 
+    animation: slide-up 0.5s ease-out; 
 }
 
 .login-container h2 {
@@ -44,9 +49,15 @@
     box-sizing: border-box;
 }
 
-.login-container button {
-    display: block;
-    margin-left: auto;
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.button-group button {
+    flex: 1;
+    margin: 0 5px; 
     padding: 8px 20px;
     background-color: #5181b4;
     color: white;
@@ -58,6 +69,20 @@
     box-shadow: 0 1px #3b5998; 
     transition: all 0.2s ease;
 }
+
+.button-group button:first-child {
+    margin-left: 0; /* Eliminar margen izquierdo del primer botón */
+}
+
+.button-group button:last-child {
+    margin-right: 0; /* Eliminar margen derecho del último botón */
+}
+
+.login-container button:active {
+    box-shadow: 0 2px #3b5998; 
+    transform: translateY(2px); 
+}
+
 .campo {
     background-color: rgb(255, 255, 255);
     border-radius: 7px;
@@ -65,9 +90,4 @@
 
 .colorLog {
     color: rgb(161, 161, 161); 
-}
-
-.login-container button:active {
-    box-shadow: 0 2px #3b5998; 
-    transform: translateY(2px); 
 }
