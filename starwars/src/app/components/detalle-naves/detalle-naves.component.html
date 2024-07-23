@@ -1,33 +1,36 @@
 <app-header [estoyLogueado]="estoyLogueado"></app-header>
-
-<div class="body">
-    <div class="header-container">
-        <div class="line"></div>
-        <div class="title">STARSHIP</div>
-    </div>
-</div>
-<div class="naveCard">
-    <div class="image-container">
-        <img [src]="imageUrl" alt="Imagen de la nave" (error)="nonave()" />
-    </div>
-    <div class="details-container">
-        <div class="name">{{ nave.name }}</div>
-        <div class="details">
-            <p>Esta nave es del modelo {{ nave.model }} del fabricante {{ nave.manufacturer }}. Tiene una carga útil
-                de {{ nave.cargo_capacity }} Kg., lo que le permite un rango de autonomía de {{ nave.consumables }}
-                en el espacio, sin reabastecerse.</p>
-            <div class="columns">
-                <div class="column">
-                    <p><strong>Costo en créditos:</strong> {{ nave.cost_in_credits }}</p>
-                    <p><strong>Longitud:</strong> {{ nave.length }}</p>
-                    <p><strong>Hyperdrive:</strong> {{ nave.hyperdrive_rating }}</p>
-                    <p><strong>Velocidad máxima:</strong> {{ nave.max_atmosphering_speed }}</p>
+<div class="background-detalle-naves"></div>
+<div class="detalle-naves-fixed">
+    <div class="naveCard">
+        <div class="image-container">
+            <div class="body">
+                <div class="header-container">
+                    <div class="line"></div>
+                    <div class="title">STARSHIP</div>
                 </div>
-                <div class="column">
-                    <p><strong>Tripulación:</strong> {{ nave.crew }}</p>
-                    <p><strong>Pasajeros:</strong> {{ nave.passengers }}</p>
-                    <p><strong>Velocidad atmosférica:</strong> {{ nave.max_atmosphering_speed }}</p>
-                    <p><strong>Medida de largo:</strong> {{ nave.length }} metros.</p>
+                <img [src]="imageUrl" alt="Imagen de la nave" (error)="nonave()" />
+            </div>
+
+        </div>
+        <div class="details-container">
+            <div class="name">{{ nave.name }}</div>
+            <div class="details">
+                <p>Esta nave es del modelo {{ nave.model }} del fabricante {{ nave.manufacturer }}. Tiene una carga útil
+                    de {{ nave.cargo_capacity }} Kg., lo que le permite un rango de autonomía de {{ nave.consumables }}
+                    en el espacio, sin reabastecerse.</p>
+                <div class="columns">
+                    <div class="column">
+                        <p><strong>Costo en créditos:</strong> {{ nave.cost_in_credits }}</p>
+                        <p><strong>Longitud:</strong> {{ nave.length }}</p>
+                        <p><strong>Hyperdrive:</strong> {{ nave.hyperdrive_rating }}</p>
+                        <p><strong>Velocidad máxima:</strong> {{ nave.max_atmosphering_speed }}</p>
+                    </div>
+                    <div class="column">
+                        <p><strong>Tripulación:</strong> {{ nave.crew }}</p>
+                        <p><strong>Pasajeros:</strong> {{ nave.passengers }}</p>
+                        <p><strong>Velocidad atmosférica:</strong> {{ nave.max_atmosphering_speed }}</p>
+                        <p><strong>Medida de largo:</strong> {{ nave.length }} metros.</p>
+                    </div>
                 </div>
             </div>
         </div>
