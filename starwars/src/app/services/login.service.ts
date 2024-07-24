@@ -7,7 +7,6 @@ import { iLogin, iUsuario } from '../interfaces/usuarios';
   providedIn: 'root'
 })
 export class LoginService {
-
   private urlDDBB = 'http://localhost:3000';
   private tokenSubject = new BehaviorSubject<string | null>(null);
 

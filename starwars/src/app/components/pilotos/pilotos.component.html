@@ -1,0 +1,11 @@
+@if (pilotos$ | async; as pilots) {
+<div>
+    <h3>Pilotos</h3>
+    @for (pilot of pilots; track pilot) {
+    <div class="card">
+        <img [src]="cargarFotos(pilot.url)" alt="{{ pilot.name }}">
+        <p>{{ pilot.name }}</p>
+    </div>
+    }
+</div>
+}

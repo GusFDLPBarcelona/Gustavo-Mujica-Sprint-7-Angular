@@ -1,5 +1,5 @@
 body {
-    background-image: url('../public/assets/estrellas.jpg');
+    background-image: url('../public/assets/cieloestrellado.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -10,14 +10,14 @@ body {
 }
 
 
-.background-detalle-naves {
+.background-detalle-naves {    
     background-image: url('../public/assets/estrellaotroangulo.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -1; 

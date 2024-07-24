@@ -15,7 +15,7 @@ import { NavesService } from '../../services/naves.service';
   styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
-  estoyLogueado?: boolean;
+  estoyLogueado: boolean = false;
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private authService: AuthService, private router: Router, private navesService: NavesService) { }
 

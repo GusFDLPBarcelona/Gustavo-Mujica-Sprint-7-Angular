@@ -11,12 +11,17 @@ import { importProvidersFrom } from '@angular/core';
 import { RegisterComponent } from './app/components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { authGuard } from './app/guard/auth.guard';
+import { PilotosComponent } from './app/components/pilotos/pilotos.component';
+import { PeliculasComponent } from './app/components/peliculas/peliculas.component';
+
 
 
 export const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: 'full' },
   { path: "home", component: HomeComponent, pathMatch: 'full' },
   { path: "starships", component: ListaNavesComponent, pathMatch: 'full' },
+  { path: 'pilotos', component: PilotosComponent },
+  { path: 'peliculas', component: PeliculasComponent },
   { path: "login", component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent, pathMatch: 'full' },
   { path: ":nave.url", component: DetalleNavesComponent, resolve: { nave: NaveResolver }, pathMatch: 'full', canActivate: [authGuard] },

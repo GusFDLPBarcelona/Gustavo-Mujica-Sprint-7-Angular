@@ -1,0 +1,11 @@
+<ul>
+    @if(dataPeliculas$ |async; as dataPeliculas) {
+    @for(peli of dataPeliculas; track peli) {
+    <li>{{peli.body.title}}</li>
+    <img [src]="getImagenUrl(peli.body.url)">
+    }
+    }
+
+
+
+</ul>

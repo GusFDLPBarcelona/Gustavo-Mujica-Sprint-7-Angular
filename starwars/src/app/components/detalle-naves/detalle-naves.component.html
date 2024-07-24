@@ -10,8 +10,9 @@
                 </div>
                 <img [src]="imageUrl" alt="Imagen de la nave" (error)="nonave()" />
             </div>
-
         </div>
+
+        @if(nave) {
         <div class="details-container">
             <div class="name">{{ nave.name }}</div>
             <div class="details">
@@ -34,5 +35,12 @@
                 </div>
             </div>
         </div>
+        }
     </div>
 </div>
+@if(films){
+<app-peliculas [films]="films"></app-peliculas>
+}
+@if(pilots){
+<app-pilotos [pilots]="pilots"></app-pilotos>
+}

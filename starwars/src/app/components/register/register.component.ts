@@ -21,7 +21,7 @@ export class RegisterComponent {
     email: new FormControl(''),
     password: new FormControl('')
   });
-  estoyLogueado?: boolean;
+  estoyLogueado: boolean = false;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService, private navesService: NavesService) {
     this.registerForm = this.fb.group({

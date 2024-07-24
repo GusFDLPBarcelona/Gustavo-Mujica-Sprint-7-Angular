@@ -18,11 +18,23 @@ export interface Nave extends Naves {
     hyperdrive_rating: string;
     MGLT: string;
     starship_class: string;
-    pilots: string[];
-    films: string[];
+    pilots: Pilot[];
+    films: Film[];
     created: string;
     edited: string;
     url: string;
+}
+
+export interface Pilot {
+    id: string;
+    name: string;
+    imagenUrl: string;
+}
+
+export interface Film {
+    id: string;
+    title: string;
+    imagenUrl: string;
 }
 
 

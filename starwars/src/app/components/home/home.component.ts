@@ -14,8 +14,7 @@ import { LoginService } from '../../services/login.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  estoyLogueado?: boolean;
-
+  estoyLogueado: boolean = false;
   constructor(private renderer: Renderer2, private loginService: LoginService) { }
 
   ngOnInit(): void {

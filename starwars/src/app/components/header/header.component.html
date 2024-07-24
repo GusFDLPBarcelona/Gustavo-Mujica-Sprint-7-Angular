@@ -1,15 +1,16 @@
 <div class="body header">
     <header>
         <div class="banner align-content-md-center">
-            <img class="imageBanner" src="assets\sw_logo_stacked_2x-52b4f6d33087_7ef430af.png" />
+            <img class="imageBanner" src="assets/sw_logo_stacked_2x-52b4f6d33087_7ef430af.png" />
             <div class="buttons">
-                @if(!!!estoyLogueado) {
+                @if (!estoyLogueado) {
                 <button class="info" (click)="navegarALogin()">Log in</button>
-                } @else {
-                <button class="info" (click)="logOut()">Log out</button>
-                }
                 <span class="separador">//</span>
                 <button class="info" (click)="navegarASignUp()">Sign up</button>
+                }
+                @if (estoyLogueado) {
+                <button class="info" (click)="logOut()">Log out</button>
+                }
             </div>
         </div>
         <nav>

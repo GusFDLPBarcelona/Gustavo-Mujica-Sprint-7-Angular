@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Naves, Nave } from '../interfaces/naves';
+import { BehaviorSubject, Observable, forkJoin } from 'rxjs';
+import { Naves, Nave, Pilot, Film } from '../interfaces/naves';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Injectable({
@@ -55,6 +55,30 @@ export class NavesService {
     console.log(this.siguienteUrl)
     this.siguienteUrl = url;
   }
+
+  getPilotos(urls: string): Observable<any> {
+    return this.httpClient.get(urls);
+  }
+
+  getFilmsPhoto(url: string): SafeUrl {
+    const id = url.replace('https://swapi.py4e.com/api/films/', '').replace('/', '').replace('https:/swapi.dev/api/films/', '').replace('/', '');
+    const filmPhoto = `https://starwars-visualguide.com/assets/img/films/${id}.jpg`;
+    return this.sanitizer.bypassSecurityTrustUrl(filmPhoto);
+  }
+
+  getFilmsData(film: string): Observable<any> {
+    return this.httpClient.get(film, { observe: 'response' });
+  }
+
+  getFotoPiloto(url: string): SafeUrl {
+    const id = url.replace('https://swapi.py4e.com/api/people/', '').replace('https://swapi.dev/api/people/', '').replace('/', '');
+    console.log("aviso, aviiiiiiiiso", id);
+    const pilotoFoto = `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`;
+    return this.sanitizer.bypassSecurityTrustUrl(pilotoFoto);
+  }
 }
+
+
+
 
 

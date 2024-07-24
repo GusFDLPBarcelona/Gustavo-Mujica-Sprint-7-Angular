@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -14,10 +14,11 @@ import { LoginService } from '../../services/login.service';
 })
 export class HeaderComponent {
   @Input('estoyLogueado') estoyLogueado?: boolean;
+
   registerForm: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService, private cd: ChangeDetectorRef) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -25,7 +26,9 @@ export class HeaderComponent {
     });
   }
 
-
+  ngOnInit() {
+    this.estoyLogueado = this.loginService.isAuthenticated();
+  }
 
   onSubmit() {
     if (this.registerForm.valid) {
@@ -51,6 +54,7 @@ export class HeaderComponent {
 
   logOut(): void {
     this.estoyLogueado = false;
+    this.cd.detectChanges();
     this.loginService.logOut();
     this.router.navigate(['home']);
   }
