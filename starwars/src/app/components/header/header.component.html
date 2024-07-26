@@ -7,8 +7,7 @@
                 <button class="info" (click)="navegarALogin()">Log in</button>
                 <span class="separador">//</span>
                 <button class="info" (click)="navegarASignUp()">Sign up</button>
-                }
-                @if (estoyLogueado) {
+                } @else {
                 <button class="info" (click)="logOut()">Log out</button>
                 }
             </div>
@@ -19,7 +18,9 @@
                     <a class="nav-link" href="home">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="starships">STARSHIPS</a>
+                    <button (click)="irAStarships()" class="nav-link">
+                        STARSHIPS
+                    </button>
                 </li>
             </ul>
         </nav>

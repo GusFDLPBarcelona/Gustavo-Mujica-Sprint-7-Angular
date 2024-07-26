@@ -1,12 +1,11 @@
-<app-header [estoyLogueado]="estoyLogueado"></app-header>
+<app-header></app-header>
+
 <div class="background-detalle-naves"></div>
 <div class="detalle-naves-fixed">
     <div class="naveCard">
         <div class="image-container">
             <div class="body">
                 <div class="header-container">
-                    <div class="line"></div>
-                    <div class="title">STARSHIP</div>
                 </div>
                 <img [src]="imageUrl" alt="Imagen de la nave" (error)="nonave()" />
             </div>
@@ -16,8 +15,10 @@
         <div class="details-container">
             <div class="name">{{ nave.name }}</div>
             <div class="details">
-                <p>Esta nave es del modelo {{ nave.model }} del fabricante {{ nave.manufacturer }}. Tiene una carga útil
-                    de {{ nave.cargo_capacity }} Kg., lo que le permite un rango de autonomía de {{ nave.consumables }}
+                <p>Esta nave es del modelo {{ nave.model }} del fabricante {{ nave.manufacturer }}. Tiene una carga
+                    útil
+                    de {{ nave.cargo_capacity }} Kg., lo que le permite un rango de autonomía de {{ nave.consumables
+                    }}
                     en el espacio, sin reabastecerse.</p>
                 <div class="columns">
                     <div class="column">
@@ -38,9 +39,11 @@
         }
     </div>
 </div>
-@if(films){
-<app-peliculas [films]="films"></app-peliculas>
-}
+
 @if(pilots){
 <app-pilotos [pilots]="pilots"></app-pilotos>
+}
+
+@if(films){
+<app-peliculas [films]="films"></app-peliculas>
 }

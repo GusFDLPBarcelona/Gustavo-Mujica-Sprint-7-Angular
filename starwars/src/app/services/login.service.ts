@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { iLogin, iUsuario } from '../interfaces/usuarios';
 
 @Injectable({
@@ -28,7 +28,9 @@ export class LoginService {
   }
 
   login(credentials: iLogin): any {
-    return this.http.post<{ token: string }>(`${this.urlDDBB}/login`, credentials);
+    return this.http.post<{ token: string }>(`${this.urlDDBB}/login`, credentials).pipe(
+      catchError(this.handleError)
+    );
   }
 
   logOut(): void {
@@ -37,16 +39,24 @@ export class LoginService {
   }
 
   isAuthenticated(): boolean {
-    return this.tokenSubject.value !== undefined && localStorage.getItem('accessToken') !== undefined;
+    return localStorage.getItem('accessToken') !== null;
   }
 
   setearToken(token: string): void {
     this.tokenSubject.next(token);
   }
 
-  private handleError(error: any) {
-    console.error('An error occurred', error);
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    //console.error(errorMessage); // Opcional: muestra el error en la consola
+    return throwError(() => new Error(errorMessage));
   }
 }
 

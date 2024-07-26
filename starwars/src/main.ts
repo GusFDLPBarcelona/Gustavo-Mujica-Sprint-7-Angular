@@ -19,12 +19,12 @@ import { PeliculasComponent } from './app/components/peliculas/peliculas.compone
 export const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: 'full' },
   { path: "home", component: HomeComponent, pathMatch: 'full' },
-  { path: "starships", component: ListaNavesComponent, pathMatch: 'full' },
+  { path: "starships", component: ListaNavesComponent, pathMatch: 'full', canActivate: [authGuard] },
   { path: 'pilotos', component: PilotosComponent },
   { path: 'peliculas', component: PeliculasComponent },
   { path: "login", component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent, pathMatch: 'full' },
-  { path: ":nave.url", component: DetalleNavesComponent, resolve: { nave: NaveResolver }, pathMatch: 'full', canActivate: [authGuard] },
+  { path: ":nave.url", component: DetalleNavesComponent, resolve: { nave: NaveResolver }, pathMatch: 'full' },
 
 ]
 

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login.service';
+import { NavesService } from '../../services/naves.service';
 
 @Component({
   selector: 'app-header',
@@ -13,12 +14,12 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Input('estoyLogueado') estoyLogueado?: boolean;
+  estoyLogueado?: boolean;
 
   registerForm: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService, private cd: ChangeDetectorRef) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService, private cd: ChangeDetectorRef, private navesService: NavesService) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -28,6 +29,7 @@ export class HeaderComponent {
 
   ngOnInit() {
     this.estoyLogueado = this.loginService.isAuthenticated();
+    console.log(this.estoyLogueado);
   }
 
   onSubmit() {
@@ -49,6 +51,7 @@ export class HeaderComponent {
   }
 
   navegarASignUp() {
+    this.navesService.clearMyUrl();
     this.router.navigate(['register']);
   }
 
@@ -56,6 +59,12 @@ export class HeaderComponent {
     this.estoyLogueado = false;
     this.cd.detectChanges();
     this.loginService.logOut();
+    this.navesService.getUrl('');
     this.router.navigate(['home']);
+  }
+
+  irAStarships() {
+    this.navesService.getUrl('starships');
+    this.router.navigate(['starships']);
   }
 }

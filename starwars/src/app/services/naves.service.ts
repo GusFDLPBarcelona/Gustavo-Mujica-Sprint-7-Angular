@@ -51,6 +51,10 @@ export class NavesService {
     return this.urlSubject.getValue();
   }
 
+  clearMyUrl(): void {
+    this.urlSubject.next('');
+  }
+
   setSiguienteUrl(url: string | null): void {
     console.log(this.siguienteUrl)
     this.siguienteUrl = url;

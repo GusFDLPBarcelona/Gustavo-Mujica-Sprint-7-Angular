@@ -1,11 +1,19 @@
-@if (pilotos$ | async; as pilots) {
-<div>
-    <h3>Pilotos</h3>
-    @for (pilot of pilots; track pilot) {
-    <div class="card">
-        <img [src]="cargarFotos(pilot.url)" alt="{{ pilot.name }}">
-        <p>{{ pilot.name }}</p>
+<div class="container pb-4 mt-5">
+    <h3 class=" mb-3 text">PILOTS</h3>
+    <hr class="mb-4" />
+    <div class="d-flex justify-content-center mb-5">
+        @if (pilotos$ | async; as pilots) {
+        <div>
+            <div class="row justify-content-center">
+
+                @for (pilot of pilots; track pilot) {
+                <div class="card m-3 p-0 pilots">
+                    <img class="img-fluid" [src]="cargarFotos(pilot.url)" alt="{{ pilot.name }}">
+                    <p>{{ pilot.name }}</p>
+                </div>
+                }
+            </div>
+        </div>
+        }
     </div>
-    }
 </div>
-}

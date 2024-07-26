@@ -36,19 +36,24 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    this.loginService.registrarUsuario(this.registerForm.value as iUsuario).subscribe((respuesta) => {
-      const url = encodeURIComponent(this.navesService.getMyUrl());
-      localStorage.setItem("accessToken", respuesta.accessToken);
-      if (url) {
-        this.router.navigate([url])
-      } else {
-        this.router.navigate(['home']);
-      }
-    },
-      (error: any) => {
-        console.error('Registro fallido', error);
-      });
-    this.registerForm.reset();
+    try {
+      this.loginService.registrarUsuario(this.registerForm.value as iUsuario).subscribe((respuesta) => {
+        const url = encodeURIComponent(this.navesService.getMyUrl());
+        localStorage.setItem("accessToken", respuesta.accessToken);
+        if (url) {
+          this.router.navigate([url]);
+        } else {
+          this.router.navigate(['home']);
+        }
+      },
+        (error: any) => {
+          //console.error('Registro fallido', error);
+          alert('El usuario ya existe.');
+        });
+      this.registerForm.reset();
+    } catch (error) {
+    }
+
 
   }
 

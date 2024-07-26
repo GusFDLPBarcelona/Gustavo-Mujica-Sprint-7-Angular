@@ -20,11 +20,12 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private loginService: LoginService, private authService: AuthService, private router: Router, private navesService: NavesService) { }
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
   token: any;
-  errorMessage: string | null = null;
+  errorMessageEmail: string | null = null;
+  errorMessagePassword: string | null = null;
 
 
 
@@ -32,6 +33,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.estoyLogueado = this.loginService.isAuthenticated();
     this.loginForm.reset();
+    this.errorMessageEmail = '';
+    this.errorMessagePassword = '';
     this.loginForm.value.email = '';
     this.loginForm.value.password = '';
   }
@@ -45,26 +48,33 @@ export class LoginComponent implements OnInit {
       };
       this.loginService.login(loginData).subscribe(
         (response: any) => {
-
           localStorage.setItem('accessToken', response.accessToken);
-          console.log('Login successful', response);
+          alert('Login successful');
           const url = encodeURIComponent(this.navesService.getMyUrl());
           this.loginForm.reset();
           if (url) {
             this.router.navigate([url]);
           } else {
-            this.router.navigate(['home']);
+            this.router.navigate(['starships']);
           }
-
 
         },
         (error: any) => {
-          console.error('Login failed', error);
-          this.errorMessage = 'Login failed. Please check your credentials and try again.';
+          console.error('Login failed', error.statusText === 'Bad Request' ? 'El usuario no existe' : error.statusText);
+          alert('Login error: ' + error.statusText === 'Bad Request' ? 'El usuario no existe' : error.statusText);
+          this.errorMessageEmail = 'Login failed. Please check your credentials and try again.';
         }
       );
-    } else {
-      console.error('Form is invalid');
+    } else if (this.loginForm.get(['email'])?.errors) {
+      console.log(this.loginForm);
+      this.loginForm.setErrors({ customError: 'email' });
+      console.log(this.loginForm);
+      this.errorMessageEmail = "El email no es válido";
+    } else if (this.loginForm.get(['password'])?.errors) {
+      console.log(this.loginForm);
+      this.loginForm.setErrors({ customError: 'password' });
+      console.log(this.loginForm);
+      this.errorMessagePassword = "La contraseña no es válida";
     }
   }
 
