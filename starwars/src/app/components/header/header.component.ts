@@ -15,9 +15,7 @@ import { NavesService } from '../../services/naves.service';
 })
 export class HeaderComponent {
   estoyLogueado?: boolean;
-
   registerForm: FormGroup;
-  isLoggedIn: boolean;
 
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService, private cd: ChangeDetectorRef, private navesService: NavesService) {
