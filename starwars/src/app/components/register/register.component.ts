@@ -47,7 +47,6 @@ export class RegisterComponent {
         }
       },
         (error: any) => {
-          //console.error('Registro fallido', error);
           alert('El usuario ya existe.');
         });
       this.registerForm.reset();

@@ -39,6 +39,7 @@ export class DetalleNavesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.estoyLogueado = this.loginService.isAuthenticated();
     this.route.data.subscribe((data: any) => {
       if (data) {
