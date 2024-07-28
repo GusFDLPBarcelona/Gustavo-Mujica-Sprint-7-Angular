@@ -21,14 +21,14 @@ describe('HeaderComponent', () => {
   });
 
   it('should show logout button when logged in', () => {
-    component.isLoggedIn = true;
+    component.estoyLogueado = true;
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.logout-button')).not.toBeNull();
   });
 
   it('should not show logout button when not logged in', () => {
-    component.isLoggedIn = false;
+    component.estoyLogueado = false;
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.logout-button')).toBeNull();

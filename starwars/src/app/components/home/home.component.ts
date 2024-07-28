@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.estoyLogueado = this.loginService.isAuthenticated();
     console.log("estoy logueado?", this.estoyLogueado);
-    //this.createStars();
     window.addEventListener('resize', this.createStars.bind(this));
   }
 
