@@ -14,13 +14,14 @@
 }
 
 .login-container {
-    width: 240px;
+    max-width: 240px;
+    margin-top: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 50%; 
+    top: 55%; 
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #414141;
@@ -28,8 +29,8 @@
     border-radius: 10px;
     box-shadow: 0 2px 2px #414141;
     z-index: 1; 
-    animation: slide-up 0.5s ease-out; 
 }
+
 
 .login-container h2 {
     margin-bottom: 20px;

@@ -11,6 +11,10 @@
   margin: 0 auto; 
 }
 
+.text {
+  color: rgb(161, 161, 161); 
+}
+
 .card img {
   width: 100%; 
   height: auto; 
