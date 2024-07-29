@@ -4,15 +4,6 @@
 
 }
 
-.header-container {
-    border-top: 1px;
-    border-bottom: 1px;
-    border-color: #757575;
-    width: 80%;
-    z-index: 3000;
-        
-}
-
 .detalle-naves-fixed {
     margin-top: 33% !important;
     position: relative;
@@ -46,6 +37,12 @@
 .naveCard .image-container {
     flex: 1; 
     overflow: hidden;
+}
+
+.naveCard .image-container img {
+    width: auto;
+    height: auto;
+    display: block;
 }
 
 
