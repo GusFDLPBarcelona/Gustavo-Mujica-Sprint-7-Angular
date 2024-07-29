@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -28,21 +28,6 @@ export class HeaderComponent {
 
   ngOnInit() {
     this.estoyLogueado = this.loginService.isAuthenticated();
-    console.log(this.estoyLogueado);
-  }
-
-  onSubmit() {
-    if (this.registerForm.valid) {
-      this.http.post('http://localhost:3000/users', this.registerForm.value).subscribe(
-        response => {
-          console.log('User registered successfully:', response);
-          this.navegarALogin();
-        },
-        error => {
-          console.error('Error during registration:', error);
-        }
-      );
-    }
   }
 
   navegarALogin() {

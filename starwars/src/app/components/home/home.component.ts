@@ -15,11 +15,10 @@ import { LoginService } from '../../services/login.service';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   estoyLogueado: boolean = false;
-  constructor(private renderer: Renderer2, private loginService: LoginService) { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.estoyLogueado = this.loginService.isAuthenticated();
-    console.log("estoy logueado?", this.estoyLogueado);
     window.addEventListener('resize', this.createStars.bind(this));
   }
 

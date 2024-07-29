@@ -1,3 +1,17 @@
+body {
+    overflow: hidden;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translate(-50%, 100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
 
 .register-container {
     max-width: 240px;
@@ -15,6 +29,7 @@
     border-radius: 10px;
     box-shadow: 0 2px 2px #414141;
     z-index: 1; 
+    animation: slide-up 0.5s ease-out;
 }
 
 .campo {

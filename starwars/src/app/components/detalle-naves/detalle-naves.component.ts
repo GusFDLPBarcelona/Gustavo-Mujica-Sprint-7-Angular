@@ -34,7 +34,6 @@ export class DetalleNavesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private navesService: NavesService,
-    private sanitizer: DomSanitizer,
     private loginService: LoginService,
   ) { }
 
@@ -55,7 +54,6 @@ export class DetalleNavesComponent implements OnInit {
       this.nave = nave;
       this.pilots = nave.pilots;
       this.films = nave.films;
-      console.log(this.pilots);
     });
     this.imageUrl = this.navesService.getNaveImagen(id);
   }

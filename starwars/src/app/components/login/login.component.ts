@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { iLogin } from '../../interfaces/usuarios';
 import { HeaderComponent } from "../header/header.component";
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { NavesService } from '../../services/naves.service';
 
@@ -17,7 +16,7 @@ import { NavesService } from '../../services/naves.service';
 export class LoginComponent implements OnInit {
   estoyLogueado: boolean = false;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private authService: AuthService, private router: Router, private navesService: NavesService) { }
+  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router, private navesService: NavesService) { }
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -26,9 +25,6 @@ export class LoginComponent implements OnInit {
   token: any;
   errorMessageEmail: string | null = null;
   errorMessagePassword: string | null = null;
-
-
-
 
   ngOnInit() {
     this.estoyLogueado = this.loginService.isAuthenticated();
@@ -40,7 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   verificarLogin() {
-    console.log(this.loginForm.valid);
     if (this.loginForm.valid) {
       const loginData: iLogin = {
         email: this.loginForm.value.email!,
@@ -49,7 +44,6 @@ export class LoginComponent implements OnInit {
       this.loginService.login(loginData).subscribe(
         (response: any) => {
           localStorage.setItem('accessToken', response.accessToken);
-          alert('Login successful');
           const url = encodeURIComponent(this.navesService.getMyUrl());
           this.loginForm.reset();
           if (url) {
@@ -60,20 +54,16 @@ export class LoginComponent implements OnInit {
 
         },
         (error: any) => {
-          console.error('Login failed', error.statusText === 'Bad Request' ? 'El usuario no existe' : error.statusText);
-          alert('Login error: ' + error.statusText === 'Bad Request' ? 'El usuario no existe' : error.statusText);
+          console.error('Login failed', error.statusText === 'Bad Request' || error.statusText === undefined ? 'El usuario no existe' : error.statusText);
+          alert('Login error: El usuario no existe o la contraseña no es correcta');
           this.errorMessageEmail = 'Login failed. Please check your credentials and try again.';
         }
       );
     } else if (this.loginForm.get(['email'])?.errors) {
-      console.log(this.loginForm);
       this.loginForm.setErrors({ customError: 'email' });
-      console.log(this.loginForm);
       this.errorMessageEmail = "El email no es válido";
     } else if (this.loginForm.get(['password'])?.errors) {
-      console.log(this.loginForm);
       this.loginForm.setErrors({ customError: 'password' });
-      console.log(this.loginForm);
       this.errorMessagePassword = "La contraseña no es válida";
     }
   }
@@ -82,7 +72,4 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/register']);
   }
 
-  borrarUsuario() {
-
-  }
 }

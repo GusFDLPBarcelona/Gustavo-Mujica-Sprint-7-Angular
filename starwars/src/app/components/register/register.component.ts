@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +22,7 @@ export class RegisterComponent {
   });
   estoyLogueado: boolean = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService, private navesService: NavesService) {
+  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService, private navesService: NavesService) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -37,19 +36,21 @@ export class RegisterComponent {
 
   onSubmit() {
     try {
-      this.loginService.registrarUsuario(this.registerForm.value as iUsuario).subscribe((respuesta) => {
-        const url = encodeURIComponent(this.navesService.getMyUrl());
-        localStorage.setItem("accessToken", respuesta.accessToken);
-        if (url) {
-          this.router.navigate([url]);
-        } else {
-          this.router.navigate(['home']);
-        }
-      },
-        (error: any) => {
-          alert('El usuario ya existe.');
-        });
-      this.registerForm.reset();
+      if (this.registerForm.valid) {
+        this.loginService.registrarUsuario(this.registerForm.value as iUsuario).subscribe((respuesta) => {
+          const url = encodeURIComponent(this.navesService.getMyUrl());
+          localStorage.setItem("accessToken", respuesta.accessToken);
+          if (url) {
+            this.router.navigate([url]);
+          } else {
+            this.router.navigate(['home']);
+          }
+        },
+          (error: any) => {
+            alert('El usuario ya existe.');
+          });
+        this.registerForm.reset();
+      }
     } catch (error) {
     }
 

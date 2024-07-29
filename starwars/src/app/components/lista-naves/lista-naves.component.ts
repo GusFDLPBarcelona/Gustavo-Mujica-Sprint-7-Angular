@@ -3,7 +3,7 @@ import { NavesService } from '../../services/naves.service';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { Naves, Nave, Pilot, Film, } from '../../interfaces/naves';
+import { Naves, Nave } from '../../interfaces/naves';
 import { LoginService } from '../../services/login.service';
 import { PilotosComponent } from '../pilotos/pilotos.component';
 import { PeliculasComponent } from '../peliculas/peliculas.component';
@@ -62,7 +62,6 @@ export class ListaNavesComponent implements OnInit {
 
   getNaveSeleccionada(item: Naves): void {
     this.servicio.getUrl(item.url);
-    console.log(item)
     this.router.navigate([encodeURIComponent(item.url)]);
   }
 }

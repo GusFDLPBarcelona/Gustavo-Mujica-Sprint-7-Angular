@@ -34,6 +34,11 @@
       "email": "fuf@fuf.com",
       "password": "$2a$10$Oj3edU5JdMYaw26ocbW7fu.4XJ5hsZ6SIEY4cfK52BwOVKEbXj.w2",
       "id": 7
+    },
+    {
+      "email": "xavi@xavi.xav",
+      "password": "$2a$10$QefQ/G0/BK4lOiAMRnE.Ye6uuX0PKMudEYjSjwp3/.XXkeWvnnCS6",
+      "id": 8
     }
   ]
 }

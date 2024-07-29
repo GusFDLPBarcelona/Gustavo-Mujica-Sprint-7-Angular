@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Pilot } from '../../interfaces/naves';
 import { NavesService } from '../../services/naves.service';
 import { forkJoin, Observable } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
@@ -26,7 +25,6 @@ export class PilotosComponent {
   }
 
   cargarFotos(url: string): SafeUrl {
-    console.log(this.navesService.getFotoPiloto(url));
     return this.navesService.getFotoPiloto(url);
 
   }
