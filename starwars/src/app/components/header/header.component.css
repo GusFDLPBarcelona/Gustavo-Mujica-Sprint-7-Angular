@@ -1,6 +1,21 @@
 .body {
     background-color: black;
 }
+.social-media-logos {
+    display: flex;
+    align-items: center;
+    position: fixed; 
+    top: 10px;
+    left: 10px;
+    z-index: 1000; 
+}
+
+.social-logo {
+    margin-right: 10px;
+    width: 24px; 
+    height: 24px; 
+}
+
 .header {
     position: fixed;
     top: 0;
