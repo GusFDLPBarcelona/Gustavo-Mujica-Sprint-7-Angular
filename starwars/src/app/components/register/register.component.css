@@ -1,6 +1,6 @@
 
 .register-container {
-    max-width: 100%;
+    max-width: 240px;
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
