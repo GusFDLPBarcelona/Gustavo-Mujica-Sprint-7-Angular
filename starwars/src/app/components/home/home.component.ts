@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.estoyLogueado = this.loginService.isAuthenticated();
-    window.addEventListener('resize', this.createStars.bind(this));
   }
 
   ngAfterViewInit(): void {
@@ -33,27 +32,5 @@ export class HomeComponent implements OnInit, AfterViewInit {
       void content.offsetWidth;
       content.classList.add('animacion');
     }
-  }
-
-  createStars(): void {
-    const numStars: number = 1000;
-    const starContainer = document.getElementById('star-container');
-    if (starContainer) {
-      starContainer.innerHTML = '';
-      for (let i = 0; i < numStars; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        const [x, y] = this.getRandomPosition();
-        star.style.left = `${x}vw`;
-        star.style.top = `${y}vh`;
-        starContainer.appendChild(star);
-      }
-    }
-  }
-
-  getRandomPosition(): [number, number] {
-    const randomY: number = Math.random() * 100;
-    const randomX: number = Math.random() * 100;
-    return [randomX, randomY];
   }
 }
