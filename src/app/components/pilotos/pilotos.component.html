@@ -1,19 +1,15 @@
-<div class="container pb-4 mt-5">
-    <h3 class=" mb-3 text pilotos">PILOTS</h3>
-    <hr class="mb-4" />
-    <div class="d-flex justify-content-center mb-5">
+<div class="pilotos-container">
+    <h3 class="seccion-titulo">PILOTS</h3>
+    <div class="cards-row">
         @if (pilotos$ | async; as pilots) {
-        <div>
-            <div class="row justify-content-center">
-
-                @for (pilot of pilots; track pilot) {
-                <div class="card m-3 p-0 pilots">
-                    <img class="img-fluid" [src]="cargarFotos(pilot.url)" alt="{{ pilot.name }}">
+            @for (pilot of pilots; track pilot) {
+                <div class="card-item">
+                    <img [src]="cargarFotos(pilot.url)" alt="{{ pilot.name }}" (error)="onImageError($event)">
                     <p>{{ pilot.name }}</p>
                 </div>
-                }
-            </div>
-        </div>
+            }
+        } @else {
+            <p class="cargando">Cargando pilotos...</p>
         }
     </div>
 </div>

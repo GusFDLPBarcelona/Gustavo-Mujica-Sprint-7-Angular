@@ -31,6 +31,10 @@ export class PeliculasComponent {
   getImagenUrl(url: string): SafeUrl {
     return this.navesService.getFilmsPhoto(url);
   }
+
+  onImageError(event: Event): void {
+    (event.target as HTMLImageElement).src = 'assets/nonave.jpg';
+  }
 }
 
 

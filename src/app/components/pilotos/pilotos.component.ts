@@ -26,7 +26,10 @@ export class PilotosComponent {
 
   cargarFotos(url: string): SafeUrl {
     return this.navesService.getFotoPiloto(url);
+  }
 
+  onImageError(event: Event): void {
+    (event.target as HTMLImageElement).src = 'assets/nonave.jpg';
   }
 }
 

@@ -10,7 +10,6 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class NavesService {
 
   private url = 'https://swapi.py4e.com/api/starships';
-  private detalleUrl = 'https://swapi.dev/api/starships/';
   private imageBaseUrl = 'https://starwars-visualguide.com/assets/img';
   private siguienteUrl: string | null = null;
   private urlSubject = new BehaviorSubject<string>('');
@@ -24,10 +23,6 @@ export class NavesService {
   getNaveImagen(id: string): SafeUrl {
     const imageUrl = `${this.imageBaseUrl}/starships/${id}.jpg`;
     return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-  }
-
-  getNaveDetalle(id: number): Observable<Nave> {
-    return this.httpClient.get<Nave>(`${this.detalleUrl}${id}`);
   }
 
   getNaveDato(url: string): Observable<HttpResponse<Naves>> {

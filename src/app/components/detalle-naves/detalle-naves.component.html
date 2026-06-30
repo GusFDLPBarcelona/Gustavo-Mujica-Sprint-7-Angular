@@ -4,11 +4,7 @@
 <div class="detalle-naves-fixed">
     <div class="naveCard">
         <div class="image-container">
-            <div class="body">
-                <div class="header-container">
-                </div>
-                <img [src]="imageUrl" alt="Imagen de la nave" (error)="nonave()" />
-            </div>
+            <img [src]="imageUrl" alt="Imagen de la nave" (error)="nonave()" />
         </div>
 
         @if(nave) {
@@ -40,10 +36,10 @@
     </div>
 </div>
 
-@if(pilots){
+@if(pilots && pilots.length > 0) {
 <app-pilotos [pilots]="pilots"></app-pilotos>
 }
 
-@if(films){
+@if(films && films.length > 0) {
 <app-peliculas [films]="films"></app-peliculas>
 }

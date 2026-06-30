@@ -41,21 +41,14 @@ export class DetalleNavesComponent implements OnInit {
     window.scroll(0, 0);
     this.estoyLogueado = this.loginService.isAuthenticated();
     this.route.data.subscribe((data: any) => {
-      if (data) {
+      if (data && data.nave) {
+        this.nave = data.nave;
+        this.pilots = data.nave.pilots;
+        this.films = data.nave.films;
         const id = data.nave.url.replace('https://swapi.py4e.com/api/starships/', '').replace('/', '');
-        this.cargarDatos(id);
+        this.imageUrl = this.navesService.getNaveImagen(id);
       }
-
     });
-  }
-
-  cargarDatos(id: string): void {
-    this.navesService.getNaveDetalle(Number(id)).subscribe((nave: any) => {
-      this.nave = nave;
-      this.pilots = nave.pilots;
-      this.films = nave.films;
-    });
-    this.imageUrl = this.navesService.getNaveImagen(id);
   }
 
   nonave() {

@@ -1,18 +1,15 @@
-<div class="container myt-4 pb-4 mt-3">
-    <h2 class=" mb-3 text peliculas">FILMS</h2>
-    <hr class="mb-4" />
-    <div class="d-flex justify-content-center mb-5">
-        @if(dataPeliculas$ |async; as dataPeliculas) {
-        <div class="row justify-content-center">
+<div class="peliculas-container">
+    <h3 class="seccion-titulo">FILMS</h3>
+    <div class="cards-row">
+        @if(dataPeliculas$ | async; as dataPeliculas) {
             @for(peli of dataPeliculas; track peli) {
-            <div class="card m-3 p-0 pilots">
-                <img class="img-fluid" [src]="getImagenUrl(peli.body.url)" alt="{{peli.body.title }}">
-                <div class="text-center p-2">
-                    <li>{{peli.body.title}}</li>
+                <div class="card-item">
+                    <img [src]="getImagenUrl(peli.body.url)" alt="{{ peli.body.title }}" (error)="onImageError($event)">
+                    <p>{{ peli.body.title }}</p>
                 </div>
-            </div>
             }
-        </div>
+        } @else {
+            <p class="cargando">Cargando películas...</p>
         }
     </div>
 </div>
