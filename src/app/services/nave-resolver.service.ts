@@ -13,7 +13,7 @@ export class NaveResolver implements Resolve<any> {
     constructor(private navesService: NavesService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        const url = decodeURIComponent(route.paramMap.get('nave.url')!);
+        const url = decodeURIComponent(decodeURIComponent(state.url.substring(1)));
 
         return this.navesService.getNaveDato(url!).pipe(
             map((response: HttpResponse<Naves>) => response.body as Naves)
