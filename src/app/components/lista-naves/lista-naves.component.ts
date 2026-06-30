@@ -5,13 +5,10 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { Naves, Nave } from '../../interfaces/naves';
 import { LoginService } from '../../services/login.service';
-import { PilotosComponent } from '../pilotos/pilotos.component';
-import { PeliculasComponent } from '../peliculas/peliculas.component';
-
 @Component({
   selector: 'app-lista-naves',
   standalone: true,
-  imports: [HeaderComponent, CommonModule, RouterModule, PilotosComponent, PeliculasComponent],
+  imports: [HeaderComponent, CommonModule, RouterModule],
   templateUrl: './lista-naves.component.html',
   styleUrls: ['./lista-naves.component.css']
 })

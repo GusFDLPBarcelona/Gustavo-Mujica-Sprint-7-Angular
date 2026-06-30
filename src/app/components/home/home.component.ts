@@ -1,15 +1,12 @@
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
-import { ListaNavesComponent } from '../lista-naves/lista-naves.component';
 import { HeaderComponent } from "../header/header.component";
-import { DetalleNavesComponent } from '../detalle-naves/detalle-naves.component';
-import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../../services/login.service';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ListaNavesComponent, HeaderComponent, DetalleNavesComponent, LoginComponent],
+  imports: [HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
